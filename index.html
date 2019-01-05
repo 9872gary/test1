@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>d4</title>
+        <script>
+            var interval = null;
+            var speed = 6;
+            var count = 0;
+            var img1;
+            var img2;
+            var img3;
+            var img4;
+            var img5;
+            var point = 0;
+            var finalpoint = 0;
+            var game4;
+            var final = ["wash.png", "soap.png", "brush.png", "towel.jpg", "breeze.png"];
+            var test = [];
+
+            function start()
+            {
+                document.getElementById( "wash.png" ).addEventListener("click", function() { swap( "wash.png" ); }, false );
+                document.getElementById( "soap.png" ).addEventListener("click", function() { swap( "soap.png" ); }, false );
+                document.getElementById( "brush.png" ).addEventListener("click", function() { swap( "brush.png" ); }, false );
+                document.getElementById( "towel.jpg" ).addEventListener("click", function() { swap( "towel.jpg" ); }, false );
+                document.getElementById( "breeze.png" ).addEventListener("click", function() { swap( "breeze.png" ); }, false );
+                document.getElementById( "food.jpg" ).addEventListener("click", function() { swap( "food.jpg" ); }, false );
+                var button = document.getElementById("cheat");
+                button.addEventListener("click", god, false);
+            }
+
+            function swap(pic)
+            {
+                count++;
+                if(count == 1)
+                {
+                    var img1 = document.getElementById("pic1");
+                    img1.setAttribute("src", pic);
+                    img1.setAttribute("alt", pic);
+                    test[count] = img1.getAttribute("alt");
+                }
+                else if(count == 2)
+                {
+                    var img2 = document.getElementById("pic2");
+                    img2.setAttribute("src", pic);
+                    img2.setAttribute("alt", pic);
+                    test[count] = img2.getAttribute("alt");
+                }
+                else if(count == 3)
+                {
+                    var img3 = document.getElementById("pic3");
+                    img3.setAttribute("src", pic);
+                    img3.setAttribute("alt", pic);
+                    test[count] = img3.getAttribute("alt");
+                }
+                else if(count == 4)
+                {
+                    var img4 = document.getElementById("pic4");
+                    img4.setAttribute("src", pic);
+                    img4.setAttribute("alt", pic);
+                    test[count] = img4.getAttribute("alt");
+                }
+                else if(count == 5)
+                {
+                    var img5 = document.getElementById("pic5");
+                    img5.setAttribute("src", pic);
+                    img5.setAttribute("alt", pic);
+                    test[count] = img5.getAttribute("alt");
+                    getpoint();
+                }
+            }
+            function getpoint()
+            {
+                for(var i = 0; i < count; i++)
+                {
+                    if(final[i] == test[i + 1])
+                    point++;
+                }
+                if(point == 5)
+                finalpoint = 25;
+                else if(point == 4)
+                finalpoint = 20;
+                else if(point == 3)
+                finalpoint = 15;
+                else if(point == 2)
+                finalpoint = 10;
+                else if(point == 1)
+                finalpoint = 5;
+                else
+                finalpoint = 0;
+                localStorage.setItem("mypoint" ,finalpoint);
+                game4 = localStorage.getItem("mypoint" );
+                console.log(point);
+                console.log(finalpoint);
+                console.log(game4);
+                var display = document.getElementById("score");
+                display.innerHTML = "Score:" + finalpoint;
+            }
+
+            function god()
+            {
+                var img1 = document.getElementById("pic1");
+                img1.setAttribute("src", "wash.png");
+                img1.setAttribute("alt", "wash.png");
+                var img2 = document.getElementById("pic2");
+                img2.setAttribute("src", "soap.png");
+                img2.setAttribute("alt", "soap.png");
+                var img3 = document.getElementById("pic3");
+                img3.setAttribute("src", "brush.png");
+                img3.setAttribute("alt", "brush.png");
+                var img4 = document.getElementById("pic4");
+                img4.setAttribute("src", "towel.jpg");
+                img4.setAttribute("alt", "towel.jpg");
+                var img5 = document.getElementById("pic5");
+                img5.setAttribute("src", "breeze.png");
+                img5.setAttribute("alt", "breeze.png");
+                finalpoint = 25;
+                localStorage.setItem("mypoint" ,finalpoint);
+                game4 = localStorage.getItem("mypoint" );
+                console.log(game4);
+            }
+
+            window.addEventListener( "load", start, false );
+        </script>
+    </head>
+    <body>
+        <div>
+        <img id="pic1" src="blank.png" alt="blank" style="height:200px;  width:200px">
+        <img src="right.png" alt="right" style="height:200px;  width:200px">
+        <img id="pic2" src="blank.png" alt="blank" style="height:200px;  width:200px">
+        <img src="right.png" alt="right" style="height:200px;  width:200px">
+        <img id="pic3" src="blank.png" alt="blank" style="height:200px;  width:200px">
+        <img src="right.png" alt="right" style="height:200px;  width:200px">
+        <img id="pic4" src="blank.png" alt="blank" style="height:200px;  width:200px">
+        <img src="right.png" alt="right" style="height:200px;  width:200px">
+        <img id="pic5" src="blank.png" alt="blank" style="height:200px;  width:200px">
+        </div>
+        <div>
+        <img id="wash.png" src="wash.png" alt="wash.png" style="height:200px;  width:200px">
+        <img id="soap.png" src="soap.png" alt="soap.png" style="height:200px;  width:200px">
+        <img id="brush.png" src="brush.png" alt="brush.png" style="height:200px;  width:200px">
+        <img id="towel.jpg" src="towel.jpg" alt="towel.jpg" style="height:200px;  width:200px">
+        <img id="breeze.png" src="breeze.png" alt="breeze.png" style="height:200px;  width:200px">
+        <img id="food.jpg" src="food.jpg" alt="food.jpg" style="height:200px;  width:200px">
+        </div>
+        <p><input id="cheat" type="button" value="cheat">
+        <div id = "score"></div>
+    </body>
+</html>
